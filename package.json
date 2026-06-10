@@ -1,0 +1,24 @@
+{
+  "name": "com.audiocenter.audio",
+  "version": "1.0.0",
+  "displayName": "AudioCenter",
+  "description": "A self-contained Unity audio system built on plain AudioSource: pooled SFX playback, a clip library, an interactive music mixer, ambient layers, an audio sequencer, and editor tooling. No third-party dependencies.",
+  "unity": "2022.3",
+  "documentationUrl": "https://github.com/buho-Game/AudioCenter",
+  "changelogUrl": "https://github.com/buho-Game/AudioCenter/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/buho-Game/AudioCenter/blob/main/LICENSE.md",
+  "dependencies": {
+    "com.unity.ugui": "1.0.0"
+  },
+  "keywords": [
+    "audio",
+    "sound",
+    "sfx",
+    "music",
+    "mixer",
+    "sequencer"
+  ],
+  "author": {
+    "name": "Buho"
+  }
+}

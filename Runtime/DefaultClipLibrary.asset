@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6d6bcf5aad047b59b1308018b0fe14, type: 3}
+  m_Name: DefaultClipLibrary
+  m_EditorClassIdentifier: 
+  groups:
+  - groupName: BGM
+    assets:
+    - clipName: Battle
+      clip: {fileID: 8300000, guid: 7073a4679b011a44c9146efa84f7ef15, type: 3}
+    - clipName: AVG
+      clip: {fileID: 8300000, guid: 073b06f19a8c57140a7aa1beedff9b46, type: 3}
+    - clipName: Opening
+      clip: {fileID: 8300000, guid: 5a26ee499f5787f44bf8ae6542336b61, type: 3}
+    - clipName: UserRegistry
+      clip: {fileID: 8300000, guid: e7cf23a9088f3064abe19e30aee486c2, type: 3}
+    - clipName: Loading
+      clip: {fileID: 8300000, guid: 193dfe6c98a63464a9155ebfa4014eee, type: 3}
+    - clipName: MainMenu
+      clip: {fileID: 8300000, guid: d37057917c0fcde468824e9e1a8a4b2c, type: 3}
+    - clipName: Shop
+      clip: {fileID: 8300000, guid: be65c88617b21fc42b079375bbc5026b, type: 3}
+    - clipName: Equip
+      clip: {fileID: 8300000, guid: 452925f4d7f56844c9e9510ee7146880, type: 3}
+    - clipName: PVP
+      clip: {fileID: 8300000, guid: 66b5ce2341e360449825a613644d66ba, type: 3}
+    - clipName: Composite
+      clip: {fileID: 8300000, guid: 6ddfc5af4a15ef947bb472a677674df8, type: 3}
+    - clipName: GameSession
+      clip: {fileID: 8300000, guid: 819c736401c431f4abc90846091a0720, type: 3}
+    - clipName: WeatherUI
+      clip: {fileID: 8300000, guid: 79dec7baad1f4e54d922f11dceed7f92, type: 3}
+    - clipName: TempBattle
+      clip: {fileID: 8300000, guid: 79857de1ea6312a4496fe62cf9d6e058, type: 3}
+    - clipName: IncredibleAdventures
+      clip: {fileID: 8300000, guid: 458c17a25644547f4a46c4a0629b9d1f, type: 3}
+  - groupName: SFX
+    assets:
+    - clipName: BTN_LetsGo
+      clip: {fileID: 8300000, guid: d063505e92d313146b221fa5c0095bba, type: 3}
+    - clipName: Click_Normal
+      clip: {fileID: 8300000, guid: 1372fef37b60fc347ba3eab7e419e179, type: 3}
+    - clipName: Click_Shop
+      clip: {fileID: 8300000, guid: ec648593393b21a48ad839365c7e3c2f, type: 3}
+    - clipName: Click_Equip
+      clip: {fileID: 8300000, guid: d14c45b6a06f48c4e877c7b475db2c9f, type: 3}
+    - clipName: Click_Composite
+      clip: {fileID: 8300000, guid: 2f016e95cde0fc34bb20ae07c163b693, type: 3}
+    - clipName: Click_PVP
+      clip: {fileID: 8300000, guid: 11fd7a2de54e48045bd25703fc010b09, type: 3}
+    - clipName: Click_ChestOpen
+      clip: {fileID: 8300000, guid: 1a4d37a996c1ed544a2319a265cc778a, type: 3}
+    - clipName: Click_Chest
+      clip: {fileID: 8300000, guid: 88341189d27d41040a9d2464cef56a60, type: 3}
+    - clipName: Click_PopUP
+      clip: {fileID: 8300000, guid: 324af039f09935d469e34f90ff5db8b7, type: 3}
+    - clipName: Click_ClosePopUP
+      clip: {fileID: 8300000, guid: 248f9756fafcbe941bdefc0d500b7039, type: 3}
+    - clipName: Click_Dong
+      clip: {fileID: 8300000, guid: 89fa6bd563a092d4d8759aefad76e1ab, type: 3}
+    - clipName: Click_Buy
+      clip: {fileID: 8300000, guid: e3e98a05912d5514c91c6d2a94ed3640, type: 3}
+    - clipName: Fail
+      clip: {fileID: 8300000, guid: d787d3bfd3aab40e2b4c7732ed267f3f, type: 3}
+    - clipName: Put
+      clip: {fileID: 8300000, guid: 28c77869ef05b40da8ac0afbd47fbf3e, type: 3}
+    - clipName: PutDown
+      clip: {fileID: 8300000, guid: 6af67aebdb13e184f80883028a1680d8, type: 3}
+    - clipName: PickUp
+      clip: {fileID: 8300000, guid: d6e723738a9ae14449c736d288d60012, type: 3}
+    - clipName: PopUPItem
+      clip: {fileID: 8300000, guid: 01210b56c96ea2745b4f56f5aab1c9dc, type: 3}
+    - clipName: Slot_Selected
+      clip: {fileID: 8300000, guid: 1b21011eeccaca244a3d12182c518c7d, type: 3}
+    - clipName: Transition
+      clip: {fileID: 8300000, guid: eb331d7404c484ce69d6e01e6a04b3d4, type: 3}
+    - clipName: TabSwitch_01
+      clip: {fileID: 8300000, guid: 866655f123a1d1a4f82345eb4a8014cc, type: 3}
+    - clipName: TabSwitch_02
+      clip: {fileID: 8300000, guid: 850474df6aa275c4f9971ac76b4ceb9f, type: 3}
+    - clipName: LevelUP
+      clip: {fileID: 8300000, guid: bcc6baa61374eea4a8a92c6bb02f54d2, type: 3}
+  - groupName: Combat
+    assets:
+    - clipName: Win
+      clip: {fileID: 8300000, guid: 88cdbe2d053cc441abf631f9498d0519, type: 3}
+    - clipName: Lose
+      clip: {fileID: 8300000, guid: 0eddc7c4f400a41299ae1218cd60d466, type: 3}
+    - clipName: Bomb
+      clip: {fileID: 8300000, guid: 55bb80ac76bbb48c5acb995161bcfbbd, type: 3}
+    - clipName: Drum
+      clip: {fileID: 8300000, guid: 6a55d2afcc42d45fd893ff1dd2bafdf8, type: 3}
+    - clipName: ShipExplosion
+      clip: {fileID: 8300000, guid: 9f54c5ffb4f250849993e34a194edd75, type: 3}
+    - clipName: MicroExplosion
+      clip: {fileID: 8300000, guid: 967de93eda4129f40bd37f8a18b7429e, type: 3}
+    - clipName: Gun
+      clip: {fileID: 8300000, guid: db4069d89b14f4b428acd10d03e874f3, type: 3}
