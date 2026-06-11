@@ -25,7 +25,7 @@ namespace AudioCenter
     /// can be DSP-scheduled, but their gain is scaled by <see cref="AudioCenterAudioManager"/>'s music
     /// and master volume so the mixer still respects the player's settings.
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterMusicMixer")]
+    [AddComponentMenu("AudioCenter/AudioCenterMusicMixer")]
     public class AudioCenterMusicMixer : MonoBehaviour
     {
         [Serializable]

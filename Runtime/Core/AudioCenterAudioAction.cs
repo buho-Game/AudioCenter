@@ -76,7 +76,7 @@ namespace AudioCenter
         public Vector2 rndRange = new Vector2(-0.3f, 0.3f);
 
         // Clip reference
-        public AudioCenterClipReferenceType clipReferenceType;
+        public AudioCenterClipReferenceType clipReferenceType = AudioCenterClipReferenceType.Library;
         public string groupName;
         public string clipName;
         public AudioClip clip;

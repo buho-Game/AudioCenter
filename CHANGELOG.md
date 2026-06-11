@@ -5,6 +5,13 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-06-11
+
+### Changed
+
+- `clipReferenceType` now defaults to `Library` (instead of `File`/unset) for audio
+  actions and BGM sequencer steps, so new entries point at the clip library by default.
+
 ## [1.1.0] - 2026-06-11
 
 ### Added
@@ -19,6 +26,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The interactive music mixer now scales by the manager's full effective BGM output
   (mute, duck, fades, master) instead of just music × master.
+
+### Fixed
+
+- `AddComponentMenu` paths now use PascalCase matching the class names
+  (e.g. `AudioCenter/AudioCenterAudioManager` instead of `audioCenter/audioCenterAudioManager`).
 
 ## [1.0.0] - 2026-06-10
 

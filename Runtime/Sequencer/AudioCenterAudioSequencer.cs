@@ -13,7 +13,7 @@ namespace AudioCenter
     /// same list can mix sequential moments (fade out, wait, then play) with layered
     /// one-shots (fire several SFX at once).
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterAudioSequencer")]
+    [AddComponentMenu("AudioCenter/AudioCenterAudioSequencer")]
     public class AudioCenterAudioSequencer : MonoBehaviour
     {
         [Tooltip("Play the sequence automatically on Start.")]

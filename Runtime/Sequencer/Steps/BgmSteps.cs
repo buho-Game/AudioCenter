@@ -12,7 +12,7 @@ namespace AudioCenter
     [Serializable]
     public abstract class AudioCenterClipStep : AudioCenterAudioStep
     {
-        public AudioCenterClipReferenceType clipReferenceType = AudioCenterClipReferenceType.File;
+        public AudioCenterClipReferenceType clipReferenceType = AudioCenterClipReferenceType.Library;
         public string groupName;
         public string clipName;
         public AudioClip clip;

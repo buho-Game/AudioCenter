@@ -16,7 +16,7 @@ namespace AudioCenter
     ///   AudioCenterAudioManager.PlaySound("SFX", "Hit");
     ///   AudioCenterAudioManager.SetBgmDuckMultiplier(0.3f);
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterAudioManager")]
+    [AddComponentMenu("AudioCenter/AudioCenterAudioManager")]
     public class AudioCenterAudioManager : AudioCenterSingletonManager<AudioCenterAudioManager>
     {
         // ── Inspector ──────────────────────────────────────────────────────────

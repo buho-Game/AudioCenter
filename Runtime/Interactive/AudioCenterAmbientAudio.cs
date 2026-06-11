@@ -12,7 +12,7 @@ namespace AudioCenter
     /// StopAction() to stop. Each action is routed through the persistent
     /// AudioCenterAudioManager singleton.
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterAmbientAudio")]
+    [AddComponentMenu("AudioCenter/AudioCenterAmbientAudio")]
     public class AudioCenterAmbientAudio : MonoBehaviour
     {
         [Header("Pool")]

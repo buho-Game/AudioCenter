@@ -14,7 +14,7 @@ namespace AudioCenter
     /// audio engine lives in the <see cref="AudioCenterAudioManager"/> singleton, which is
     /// the global entry point for "play this action from anywhere".
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterAudioController")]
+    [AddComponentMenu("AudioCenter/AudioCenterAudioController")]
     public class AudioCenterAudioController : MonoBehaviour
     {
         public bool actionOnStart;

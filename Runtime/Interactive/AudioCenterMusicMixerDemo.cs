@@ -11,7 +11,7 @@ namespace AudioCenter
     /// Every action prints a Console log (prefixed "[MusicMixer]") with the resulting
     /// state so you can confirm it works. Toggle <see cref="verbose"/> off to silence them.
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterMusicMixerDemo")]
+    [AddComponentMenu("AudioCenter/AudioCenterMusicMixerDemo")]
     [RequireComponent(typeof(AudioCenterMusicMixer))]
     public class AudioCenterMusicMixerDemo : MonoBehaviour
     {

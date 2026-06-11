@@ -8,7 +8,7 @@ namespace AudioCenter
     /// Attach to a settings panel and wire each slider to the corresponding
     /// UnityEvent callback in the Inspector, or use Initialize() at runtime.
     /// </summary>
-    [AddComponentMenu("audioCenter/audioCenterAudioSettings")]
+    [AddComponentMenu("AudioCenter/AudioCenterAudioSettings")]
     public class AudioCenterAudioSettings : MonoBehaviour
     {
         [Header("Sliders")]
