@@ -60,6 +60,13 @@ namespace AudioCenter
 
         private float MasterFactor => settings.isMuteMaster ? 0f : settings.masterVolume;
 
+        /// <summary>
+        /// Effective output level for a track with mute, master and (for BGM) the
+        /// duck + fade multipliers folded in. For components that play their own
+        /// AudioSources (e.g. the music mixer) but must honour player settings.
+        /// </summary>
+        public float GetTrackOutputVolume(AudioCenterAudioTrack track) => TrackOutputVolume(track);
+
         // The single source of truth for a track's output level: bus × master,
         // folding in mute and (for BGM) the duck + fade multipliers. The pool
         // multiplies each voice's base volume by this.

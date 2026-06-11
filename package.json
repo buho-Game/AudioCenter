@@ -1,6 +1,6 @@
 {
   "name": "com.audiocenter.audio",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "AudioCenter",
   "description": "A self-contained Unity audio system built on plain AudioSource: pooled SFX playback, a clip library, an interactive music mixer, ambient layers, an audio sequencer, and editor tooling. No third-party dependencies.",
   "unity": "2022.3",

@@ -41,12 +41,20 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 79dec7baad1f4e54d922f11dceed7f92, type: 3}
     - clipName: TempBattle
       clip: {fileID: 8300000, guid: 79857de1ea6312a4496fe62cf9d6e058, type: 3}
+    - clipName: TempComp
+      clip: {fileID: 8300000, guid: 66b5ce2341e360449825a613644d66ba, type: 3}
     - clipName: IncredibleAdventures
       clip: {fileID: 8300000, guid: 458c17a25644547f4a46c4a0629b9d1f, type: 3}
   - groupName: SFX
     assets:
     - clipName: BTN_LetsGo
       clip: {fileID: 8300000, guid: d063505e92d313146b221fa5c0095bba, type: 3}
+    - clipName: BoatConstruct_Place
+      clip: {fileID: 8300000, guid: 6af67aebdb13e184f80883028a1680d8, type: 3}
+    - clipName: BoatConstruct_Remove
+      clip: {fileID: 8300000, guid: 28c77869ef05b40da8ac0afbd47fbf3e, type: 3}
+    - clipName: BoatConstruct_DragBegin
+      clip: {fileID: 8300000, guid: d6e723738a9ae14449c736d288d60012, type: 3}
     - clipName: Click_Normal
       clip: {fileID: 8300000, guid: 1372fef37b60fc347ba3eab7e419e179, type: 3}
     - clipName: Click_Shop

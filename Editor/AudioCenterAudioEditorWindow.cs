@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -209,9 +210,10 @@ namespace AudioCenter.Editor
             clipList = new ReorderableList(librarySO, clipsProp, true, false, true, true)
             {
                 elementHeight          = 20,
+                multiSelect            = true,
                 drawElementCallback    = DrawClipElement,
                 onAddCallback          = _ => AddClip(),
-                onRemoveCallback       = list => RemoveClip(list.index)
+                onRemoveCallback       = RemoveSelectedClips
             };
         }
 
@@ -243,10 +245,18 @@ namespace AudioCenter.Editor
             librarySO.ApplyModifiedProperties();
         }
 
-        private void RemoveClip(int index)
+        private void RemoveSelectedClips(ReorderableList list)
         {
+            var indices = new List<int>(list.selectedIndices);
+            if (indices.Count == 0 && list.index >= 0)
+                indices.Add(list.index);
+            if (indices.Count == 0) return;
+
             librarySO.Update();
-            ClipAssetsProp.DeleteArrayElementAtIndex(index);
+            indices.Sort();
+            // Delete from the end so earlier indices stay valid
+            for (int i = indices.Count - 1; i >= 0; i--)
+                ClipAssetsProp.DeleteArrayElementAtIndex(indices[i]);
             librarySO.ApplyModifiedProperties();
             BuildClipList();
         }

@@ -221,12 +221,13 @@ namespace AudioCenter
             return src;
         }
 
-        // Scale by the manager's music+master volume so the mixer honours player settings.
+        // Scale by the manager's effective BGM output (mute, duck, fades and master
+        // folded in) so the mixer honours player settings like any pooled BGM voice.
         private float ManagerScale()
         {
             if (_manager == null) _manager = FindObjectOfType<AudioCenterAudioManager>();
             if (_manager == null) return 1f;
-            return Mathf.Clamp01(_manager.MusicVolume) * Mathf.Clamp01(_manager.MasterVolume);
+            return Mathf.Clamp01(_manager.GetTrackOutputVolume(AudioCenterAudioTrack.BGM));
         }
     }
 }
