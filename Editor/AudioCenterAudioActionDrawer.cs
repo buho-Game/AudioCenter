@@ -13,7 +13,7 @@ namespace AudioCenter.Editor
 
         // Drawer will look for a AudioCenterClipLibrary asset via AssetDatabase
         private AudioCenterClipLibrary clipLibrary;
-        private bool initialized = false;
+        private bool libraryLoaded = false;
 
         private SerializedProperty type;
         private SerializedProperty bgmActionType;
@@ -29,6 +29,7 @@ namespace AudioCenter.Editor
         private SerializedProperty rndPitch;
         private SerializedProperty rndRange;
         private SerializedProperty track;
+        private SerializedProperty volume;
 
         private Rect backgroundRect;
         private Rect currentPosition;
@@ -36,9 +37,15 @@ namespace AudioCenter.Editor
 
         private void Initialize(SerializedProperty property)
         {
-            if (initialized) return;
-
-            LoadLibrary();
+            // Unity shares a single drawer instance across every element of a
+            // list, so cached SerializedProperty references must be re-resolved
+            // for the property currently being drawn — caching them once would
+            // make all elements display and edit the first element's data.
+            if (!libraryLoaded)
+            {
+                LoadLibrary();
+                libraryLoaded = true;
+            }
 
             type             = property.FindPropertyRelative("type");
             bgmActionType    = property.FindPropertyRelative("bgmActionType");
@@ -54,8 +61,7 @@ namespace AudioCenter.Editor
             rndPitch         = property.FindPropertyRelative("rndPitch");
             rndRange         = property.FindPropertyRelative("rndRange");
             track            = property.FindPropertyRelative("track");
-
-            initialized = true;
+            volume           = property.FindPropertyRelative("volume");
         }
 
         private void LoadLibrary()
@@ -108,6 +114,8 @@ namespace AudioCenter.Editor
                     DrawClipField();
                     currentPosition.y += spacing * 1.5f;
                     DrawField(currentPosition, loop, "Loop");
+                    currentPosition.y += spacing;
+                    DrawField(currentPosition, volume, "Volume");
                     break;
 
                 case AudioCenterBgmActionType.Resume:
@@ -139,6 +147,8 @@ namespace AudioCenter.Editor
                     DrawClipField();
                     currentPosition.y += spacing * 1.5f;
                     DrawField(currentPosition, loop, "Loop");
+                    currentPosition.y += spacing;
+                    DrawField(currentPosition, volume, "Volume");
                     currentPosition.y += spacing;
                     DrawField(currentPosition, soundMode, "Play Mode");
                     currentPosition.y += spacing;
@@ -240,7 +250,8 @@ namespace AudioCenter.Editor
                     switch ((AudioCenterBgmActionType)bgmActionType.enumValueIndex)
                     {
                         case AudioCenterBgmActionType.Play:
-                            propertyHeight += spacing * 3;
+                            propertyHeight += spacing * 4; // reference, loop, volume rows
+
                             propertyHeight += (AudioCenterClipReferenceType)clipReferenceType.enumValueIndex == AudioCenterClipReferenceType.File
                                 ? spacing : spacing * 2;
                             break;
@@ -261,7 +272,7 @@ namespace AudioCenter.Editor
                     {
                         case AudioCenterSoundActionType.Play:
                         case AudioCenterSoundActionType.AttachOnBGM:
-                            propertyHeight += spacing * 5;
+                            propertyHeight += spacing * 6; // + volume row
                             propertyHeight += (AudioCenterClipReferenceType)clipReferenceType.enumValueIndex == AudioCenterClipReferenceType.File
                                 ? spacing : spacing * 2;
                             if (rndPitch.boolValue) propertyHeight += spacing;

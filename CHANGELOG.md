@@ -5,6 +5,22 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2026-06-11
+
+### Added
+
+- Per-action `volume` field on audio actions (0–1 multiplier on top of the bus volume),
+  with a Volume row in the action drawer.
+- Optional `volume` parameter on `PlayBGM` and `PlaySound` API overloads (defaults to 1).
+- Ambient audio: `playOnStart` toggle and a `playClipsRange` to play a random number of
+  distinct clips per trigger, plus a `PlayRandom(count)` method that avoids repeating the
+  previous trigger's picks.
+
+### Fixed
+
+- Action drawer re-resolves its cached `SerializedProperty` references per element, so
+  list entries no longer display or edit the first element's data.
+
 ## [1.1.2] - 2026-06-11
 
 ### Changed

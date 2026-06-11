@@ -297,20 +297,20 @@ namespace AudioCenter
 
         // ── BGM API ───────────────────────────────────────────────────────────
 
-        public static void PlayBGM(string groupName, string clipName, bool loop = true)
+        public static void PlayBGM(string groupName, string clipName, bool loop = true, float volume = 1f)
         {
             if (Instance.library == null) return;
             AudioCenterClipGroup group = Instance.library[groupName];
             if (group == null) return;
             AudioCenterClipAsset asset = group[clipName];
             if (asset?.clip == null) return;
-            Instance.InternalPlayBGM(asset.clip, loop);
+            Instance.InternalPlayBGM(asset.clip, loop, volume);
         }
 
-        public static void PlayBGM(AudioClip clip, bool loop = true)
+        public static void PlayBGM(AudioClip clip, bool loop = true, float volume = 1f)
         {
             if (clip == null) return;
-            Instance.InternalPlayBGM(clip, loop);
+            Instance.InternalPlayBGM(clip, loop, volume);
         }
 
         public static void StopBGM()
@@ -390,8 +390,9 @@ namespace AudioCenter
             bool loop = false,
             AudioCenterPlaySoundMode playMode = AudioCenterPlaySoundMode.ReplayIfExisted,
             bool rndPitch = false,
-            Vector2 rndRange = new Vector2())
-            => PlaySound(groupName, clipName, AudioCenterAudioTrack.SFX, loop, playMode, rndPitch, rndRange);
+            Vector2 rndRange = new Vector2(),
+            float volume = 1f)
+            => PlaySound(groupName, clipName, AudioCenterAudioTrack.SFX, loop, playMode, rndPitch, rndRange, volume);
 
         public static AudioSource PlaySound(
             string groupName,
@@ -400,14 +401,15 @@ namespace AudioCenter
             bool loop = false,
             AudioCenterPlaySoundMode playMode = AudioCenterPlaySoundMode.ReplayIfExisted,
             bool rndPitch = false,
-            Vector2 rndRange = new Vector2())
+            Vector2 rndRange = new Vector2(),
+            float volume = 1f)
         {
             if (Instance.library == null) return null;
             AudioCenterClipGroup group = Instance.library[groupName];
             if (group == null) return null;
             AudioCenterClipAsset asset = group[clipName];
             if (asset?.clip == null) return null;
-            return Instance.InternalPlaySound(asset.clip, track, loop, playMode, rndPitch, rndRange);
+            return Instance.InternalPlaySound(asset.clip, track, loop, playMode, rndPitch, rndRange, volume);
         }
 
         public static AudioSource PlaySound(
@@ -415,8 +417,9 @@ namespace AudioCenter
             bool loop = false,
             AudioCenterPlaySoundMode playMode = AudioCenterPlaySoundMode.ReplayIfExisted,
             bool rndPitch = false,
-            Vector2 rndRange = new Vector2())
-            => PlaySound(clip, AudioCenterAudioTrack.SFX, loop, playMode, rndPitch, rndRange);
+            Vector2 rndRange = new Vector2(),
+            float volume = 1f)
+            => PlaySound(clip, AudioCenterAudioTrack.SFX, loop, playMode, rndPitch, rndRange, volume);
 
         public static AudioSource PlaySound(
             AudioClip clip,
@@ -424,10 +427,11 @@ namespace AudioCenter
             bool loop = false,
             AudioCenterPlaySoundMode playMode = AudioCenterPlaySoundMode.ReplayIfExisted,
             bool rndPitch = false,
-            Vector2 rndRange = new Vector2())
+            Vector2 rndRange = new Vector2(),
+            float volume = 1f)
         {
             if (clip == null) return null;
-            return Instance.InternalPlaySound(clip, track, loop, playMode, rndPitch, rndRange);
+            return Instance.InternalPlaySound(clip, track, loop, playMode, rndPitch, rndRange, volume);
         }
 
         public static void StopSound(AudioClip clip)
@@ -472,9 +476,9 @@ namespace AudioCenter
             {
                 case AudioCenterBgmActionType.Play:
                     if (action.clipReferenceType == AudioCenterClipReferenceType.File)
-                        PlayBGM(action.clip, action.loop);
+                        PlayBGM(action.clip, action.loop, action.volume);
                     else
-                        PlayBGM(action.groupName, action.clipName, action.loop);
+                        PlayBGM(action.groupName, action.clipName, action.loop, action.volume);
                     break;
 
                 case AudioCenterBgmActionType.Stop:
@@ -511,7 +515,8 @@ namespace AudioCenter
                             action.loop,
                             action.soundMode,
                             action.rndPitch,
-                            action.rndRange);
+                            action.rndRange,
+                            action.volume);
                     else
                         PlaySound(
                             action.groupName,
@@ -520,7 +525,8 @@ namespace AudioCenter
                             action.loop,
                             action.soundMode,
                             action.rndPitch,
-                            action.rndRange);
+                            action.rndRange,
+                            action.volume);
                     break;
 
                 // Start the sound in phase with the BGM playback head, so a clip
@@ -536,6 +542,7 @@ namespace AudioCenter
                             action.soundMode,
                             action.rndPitch,
                             action.rndRange,
+                            action.volume,
                             GetBgmTime());
                     break;
                 }
@@ -566,7 +573,7 @@ namespace AudioCenter
 
         // ── Internal ──────────────────────────────────────────────────────────
 
-        private void InternalPlayBGM(AudioClip clip, bool loop)
+        private void InternalPlayBGM(AudioClip clip, bool loop, float volume = 1f)
         {
             if (pool == null) return;
 
@@ -577,7 +584,7 @@ namespace AudioCenter
             // A fresh BGM plays at full fade; FadeInBgm overrides this if called.
             bgmFadeMultiplier = 1f;
 
-            activeBGMSource = pool.Play(clip, AudioCenterAudioTrack.BGM, loop, baseVolume: 1f, pitch: 1f);
+            activeBGMSource = pool.Play(clip, AudioCenterAudioTrack.BGM, loop, baseVolume: Mathf.Clamp01(volume), pitch: 1f);
         }
 
         private AudioSource InternalPlaySound(
@@ -587,6 +594,7 @@ namespace AudioCenter
             AudioCenterPlaySoundMode playMode,
             bool rndPitch,
             Vector2 rndRange,
+            float volume = 1f,
             float startTime = 0f)
         {
             if (pool == null) return null;
@@ -604,9 +612,9 @@ namespace AudioCenter
 
             float pitch = rndPitch ? 1f + Random.Range(rndRange.x, rndRange.y) : 1f;
 
-            // Bus volume + mute are folded into TrackOutputVolume, so the base
-            // volume is simply 1 — SFX and UI route to their own tracks.
-            return pool.Play(clip, track, loop, baseVolume: 1f, pitch: pitch, startTime: startTime);
+            // Bus volume + mute are folded into TrackOutputVolume; the base
+            // volume carries the per-play multiplier on top of it.
+            return pool.Play(clip, track, loop, baseVolume: Mathf.Clamp01(volume), pitch: pitch, startTime: startTime);
         }
 
         // Re-applies the current bus volumes / mutes to every live source.

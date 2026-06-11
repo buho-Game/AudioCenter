@@ -81,5 +81,8 @@ namespace AudioCenter
         public string clipName;
         public AudioClip clip;
         public bool loop;
+
+        // Per-action multiplier on top of the bus/settings volume.
+        [Range(0f, 1f)] public float volume = 1f;
     }
 }
