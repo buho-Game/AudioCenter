@@ -5,6 +5,20 @@ All notable changes to this package are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-06-11
+
+### Added
+
+- Custom inspector for `AudioCenterCustomButton` that replaces the raw SFX group/clip
+  text fields with the AudioController's Group + Clip library popups, so the click sound
+  is picked from the project's `AudioCenterClipLibrary` instead of typed by hand.
+
+### Changed
+
+- The music mixer now stops any conventional pooled BGM when it starts (treating itself
+  as the BGM source), so the two no longer play over each other.
+- `AudioCenterMusicMixer.startLayer` now defaults to `-1` (start silent) instead of `0`.
+
 ## [1.2.0] - 2026-06-11
 
 ### Added

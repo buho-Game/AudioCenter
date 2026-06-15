@@ -49,7 +49,7 @@ namespace AudioCenter
         public List<MusicLayer> layers = new List<MusicLayer>();
 
         [Tooltip("Layer made audible on Play (-1 = bed only, no layer).")]
-        public int startLayer = 0;
+        public int startLayer = -1;
 
         [Header("Behaviour")]
         public bool playOnStart = true;
@@ -89,6 +89,10 @@ namespace AudioCenter
         {
             Stop();
             if (mainBgm == null && layers.Count == 0) return;
+
+            // Treat the mixer as the BGM source: stop any conventional pooled BGM first so
+            // the two don't play over each other (mirrors how PlayBGM replaces the active BGM).
+            StopManagerBgm();
 
             double startDsp = AudioSettings.dspTime + Mathf.Max(0.02f, scheduleLeadTime);
 
@@ -228,6 +232,14 @@ namespace AudioCenter
             if (_manager == null) _manager = FindObjectOfType<AudioCenterAudioManager>();
             if (_manager == null) return 1f;
             return Mathf.Clamp01(_manager.GetTrackOutputVolume(AudioCenterAudioTrack.BGM));
+        }
+
+        // Stops the manager's pooled BGM, but only if a manager already exists — avoids
+        // auto-spawning one (AudioCenterAudioManager.Instance would) just to stop nothing.
+        private void StopManagerBgm()
+        {
+            if (_manager == null) _manager = FindObjectOfType<AudioCenterAudioManager>();
+            if (_manager != null) AudioCenterAudioManager.StopBGM();
         }
     }
 }
